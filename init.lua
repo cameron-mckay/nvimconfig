@@ -64,7 +64,7 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
 
-  'm4xshen/autoclose.nvim',
+  'windwp/nvim-autopairs',
   'ray-x/lsp_signature.nvim',
 
   -- NOTE: First, some plugins that don't require any configuration
@@ -517,7 +517,7 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-require("autoclose").setup()
+require("nvim-autopairs").setup()
 require "lsp_signature".setup({
   bind = true, -- This is mandatory, otherwise border config won't get registered.
   handler_opts = {
