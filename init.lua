@@ -66,6 +66,7 @@ require('lazy').setup({
 
   'windwp/nvim-autopairs',
   'ray-x/lsp_signature.nvim',
+  'xiyaowong/transparent.nvim',
 
   -- NOTE: First, some plugins that don't require any configuration
 
@@ -135,10 +136,10 @@ require('lazy').setup({
 
   {
     -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    'nyoom-engineering/oxocarbon.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'oxocarbon'
     end,
   },
 
@@ -149,7 +150,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'auto',
         component_separators = '|',
         section_separators = '',
       },
@@ -250,13 +251,13 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
-
+vim.wo.relativenumber = true
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
+vim.keymap.set('n', "<C-`>", ":NvimTreeToggle<CR>", { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -523,4 +524,17 @@ require "lsp_signature".setup({
   handler_opts = {
     border = "rounded"
   }
+})
+require("transparent").setup({
+  groups = { -- table: default groups
+    'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+    'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+    'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+    'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+  },
+  extra_groups = {
+    "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
+    "NvimTreeNormal" -- NvimTree
+  }, -- table: additional groups that should be cleared
+  exclude_groups = {}, -- table: groups you don't want to clear
 })
