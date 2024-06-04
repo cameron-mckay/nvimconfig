@@ -454,3 +454,12 @@ cmp.setup {
   },
 }
 
+-- Hacky fix for vue
+require('lspconfig').volar.setup({
+   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+   init_options = {
+       vue = {
+          hybridMode = false
+       },
+   }
+})
